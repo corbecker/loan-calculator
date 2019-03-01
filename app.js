@@ -1,5 +1,4 @@
 document.querySelector(".loan-form").addEventListener("submit", function(e){
-  console.log('yas');
   
   e.preventDefault();
   const results = document.querySelector('#results');
