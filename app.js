@@ -1,7 +1,21 @@
-document.querySelector(".loan-form").addEventListener("submit", calculateResults);
-
-function calculateResults(e) {
+document.querySelector(".loan-form").addEventListener("submit", function(e){
+  console.log('yas');
+  
   e.preventDefault();
+  const results = document.querySelector('#results');
+  results.style.display = 'none';
+  const loader = document.querySelector('#loading');
+  loader.style.display = 'block';
+
+  setTimeout(function(){
+    
+    calculateResults();
+    loader.style.display = 'none';
+    
+  }, 2000)
+});
+
+function calculateResults() {
 
   const amountEl = document.querySelector("#amount");
   const interestEl = document.querySelector("#interest");
@@ -24,9 +38,12 @@ function calculateResults(e) {
     monthlyPaymentEl.value = monthly.toFixed(2);//display monthly payment to 2 decimal places
     totalPaymentEl.value = (monthly * calcPayments).toFixed(2);
     totalInterestEl.value = ((monthly * calcPayments) - principal).toFixed(2);
+    document.querySelector('#results').style.display = 'block';
+    
   }else{
     showError("Check inputted values.");
   }
+  
 }
 
 function showError(error){
